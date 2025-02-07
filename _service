@@ -1,0 +1,14 @@
+<services>
+  <service name="download_url">
+    <param name="url">https://storage.googleapis.com/dart-archive/channels/beta/release/latest/VERSION</param>
+  </service>
+  <service name='set_version'>
+    <param name="fromfile">_service:download_url:VERSION</param>
+    <param name="regex">.*"version"\s*:\s*"([^"]+)".*</param>
+    <!--param name="debug">enable</param-->
+  </service>
+  <service name='download_files'/>
+  <service name='run' mode='buildtime'>
+    <param name='command'>v=$(sed -n '1{s~Version:\s*\(.*\)\s*~\1~;p}' *dart.spec); sed -i "1{s~-~_~}; 2{s~%{version}~$v~};" *dart.spec</param>
+  </service>
+</services>
