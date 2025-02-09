@@ -6,6 +6,7 @@ Release:        1%{?dist}
 Summary:        Dart SDK
 License:        BSD
 URL:            https://dart.dev/
+%define debug_package %{nil}
 %define _build_id_links none
 ExclusiveArch: %ix86 %arm64 %arm %x86_64 x86_64 %riscv64  riscv64
 %define alternatives (update-alternatives or alternatives)
